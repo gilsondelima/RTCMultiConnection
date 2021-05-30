@@ -5,11 +5,12 @@
   <title>WebRTC Scalable Broadcast using RTCMultiConnection</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="shortcut icon" href="/demos/logo.png">
-  <link rel="stylesheet" href="/demos/stylesheet.css">
+ <link rel="stylesheet" href="/demos/stylesheet.css"> 
   <script src="/demos/menu.js"></script>
 </head>
 <body>
   <header>
+    <!-- 
     <a class="logo" href="/"><img src="/demos/logo.png" alt="RTCMultiConnection"></a>
     <a href="/" class="menu-explorer">Menu<img src="/demos/menu-icon.png" alt="Menu"></a>
     <nav>
@@ -34,13 +35,13 @@
       <li>
         <a href="https://github.com/muaz-khan/RTCMultiConnection">Github</a>
       </li>
-    </nav>
+    </nav> -->
   </header>
 
   <h1>
-    WebRTC Scalable Broadcast using RTCMultiConnection
+    Transmissão escalável WebRTC usando RTCMultiConnection
     <p class="no-mobile">
-      Use peer-to-peer protocol to broadcast your video over 20+ users.
+        Use o protocolo ponto a ponto para transmitir seu vídeo para mais de 20 usuários.
     </p>
   </h1>
 
@@ -48,15 +49,15 @@
       <p style="margin: 0; padding: 0; padding-bottom: 20px;">
           <div class="make-center">
           <input type="text" id="broadcast-id" value="room-xyz" autocorrect=off autocapitalize=off size=20>
-          <button id="open-or-join">Open or Join Broadcast</button>
+          <button id="open-or-join">Criar ou entrar transmissão</button>
 
           <div class="make-center" id="broadcast-viewers-counter"></div>
       </p>
 
-      <video id="video-preview" controls loop></video>
+      <video  class="make-video" id="video-preview" controls loop></video>
   </section>
 
-<script src="/dist/RTCMultiConnection.min.js"></script>
+<script src="/dist/RTCMultiConnection.js"></script>
 <script src="/node_modules/webrtc-adapter/out/adapter.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <!-- <script src="https://www.webrtc-experiment.com/RecordRTC.js"></script> -->
@@ -370,7 +371,7 @@ connection.onNumberOfBroadcastViewersUpdated = function(event) {
 };
 </script>
 
-  <section class="no-mobile">
+<!--   <section class="no-mobile">
     <h2>How this works?</h2>
     <p>
       This module simply initializes socket.io and configures it in a way that single audio/video/screen stream can be shared/relayed over unlimited users without any <a href="https://www.webrtc-experiment.com/docs/RTP-usage.html">bandwidth/CPU usage issues</a>. Everything happens peer-to-peer!
@@ -382,7 +383,7 @@ connection.onNumberOfBroadcastViewersUpdated = function(event) {
 
   <footer>
     <small id="send-message"></small>
-  </footer>
+  </footer> -->
 
   <script src="https://www.webrtc-experiment.com/common.js"></script>
 </body>

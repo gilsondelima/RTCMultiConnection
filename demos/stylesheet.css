@@ -103,6 +103,19 @@ a:hover {
   text-align: center;
 }
 
+.make-video {
+    cursor:pointer;
+    
+    width:"220";
+    height:"140";
+    /*
+     margin-right: 0px;
+    margin-top: 0px;
+    width: 460px!important;
+    height: 240px!important; 
+    */
+  }
+
 button {
   -moz-box-shadow:inset 0px 39px 0px -24px #e67a73;
   -webkit-box-shadow:inset 0px 39px 0px -24px #e67a73;
@@ -246,3 +259,7 @@ button[disabled], input[disabled] {
         box-shadow: rgb(84, 145, 208) 0px 1px 0px 0px!important;
     }
 }
+
+
+
+
