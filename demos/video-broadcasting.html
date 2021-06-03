@@ -17,14 +17,15 @@
         <a href="/">Home</a>
       </li>
       <li>
-        <a href="/demos/">Demos</a>
+        <a href="/demos/">Exemplos</a>
       </li>
       <li>
-        <a href="https://www.rtcmulticonnection.org/docs/getting-started/">Getting Started</a>
+        <a href="https://www.rtcmulticonnection.org/docs/getting-started/">Vamos lá </a>
       </li>
       <li>
         <a href="https://www.rtcmulticonnection.org/FAQ/">FAQ</a>
       </li>
+      <!-- 
       <li>
         <a href="https://www.youtube.com/playlist?list=PLPRQUXAnRydKdyun-vjKPMrySoow2N4tl">YouTube</a>
       </li>
@@ -33,24 +34,24 @@
       </li>
       <li>
         <a href="https://github.com/muaz-khan/RTCMultiConnection">Github</a>
-      </li>
+      </li> -->
     </nav>
   </header>
 
   <h1>
-    Video OneWay Broadcasting using RTCMultiConnection
+    Transmissão [Broadcast on Live] de vídeo usando RTCMultiConnection
     <p class="no-mobile">
-      Multi-user (one-to-many) video broadcasting using star topology.
+      Transmissão de vídeo multiusuário (um para muitos) usando topologia em estrela.
     </p>
   </h1>
 
   <section class="make-center">
     <input type="text" id="room-id" value="abcdef" autocorrect=off autocapitalize=off size=20>
-    <button id="open-room">Open Room</button>
-    <button id="join-room">Join Room</button>
-    <button id="open-or-join-room">Auto Open Or Join Room</button>
+    <button id="open-room">Criar Reunião</button>
+    <button id="join-room">Entrar na Reunião Aberta </button>
+    <button id="open-or-join-room">Abertura automática ou sala de reunião</button> 
 
-    <div id="videos-container" style="margin: 20px 0;"></div>
+    <div id="videos-container" style="margin: 20px 0;" ></div>
 
     <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
   </section>
@@ -145,14 +146,18 @@ connection.onstream = function(event) {
 
     event.mediaElement.removeAttribute('src');
     event.mediaElement.removeAttribute('srcObject');
-    event.mediaElement.muted = true;
+    event.mediaElement.muted = false;
     event.mediaElement.volume = 0;
 
     var video = document.createElement('video');
 
+    console.log(video);
+
     try {
         video.setAttributeNode(document.createAttribute('autoplay'));
         video.setAttributeNode(document.createAttribute('playsinline'));
+        // video.setAttributeNode(document.createAttribute('controls'));
+        
     } catch (e) {
         video.setAttribute('autoplay', true);
         video.setAttribute('playsinline', true);
@@ -234,7 +239,7 @@ function showRoomURL(roomid) {
     var roomHashURL = '#' + roomid;
     var roomQueryStringURL = '?roomid=' + roomid;
 
-    var html = '<h2>Unique URL for your room:</h2><br>';
+    var html = '<h2>URL exclusivas para uma sala reservada:</h2><br>';
 
     html += 'Hash URL: <a href="' + roomHashURL + '" target="_blank">' + roomHashURL + '</a>';
     html += '<br>';
