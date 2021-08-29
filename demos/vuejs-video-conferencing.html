@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title>Vuejs Video Conferencing using RTCMultiConnection</title>
+  <title>Usando RTCMultiConnection com Vuejs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="shortcut icon" href="/demos/logo.png">
   <link rel="stylesheet" href="/demos/stylesheet.css">
@@ -35,23 +35,56 @@
         <a href="https://github.com/muaz-khan/RTCMultiConnection">Github</a>
       </li>
     </nav>
+<!-- 
+    <style>
+      div.select {
+          display: inline-block;
+          margin: 0 0 1em 0;
+      }
+
+      p.small {
+          font-size: 0.7em;
+      }
+
+      label {
+          width: 12em;
+          display: inline-block;
+      }
+  </style> -->
 
     
   </header>
 
   <h1>
-    Vuejs Video Conferencing using RTCMultiConnection
+    Vuejs Videoconferência usando RTCMultiConnection
     <p class="no-mobile">
-      Multi-user (many-to-many) video chat using mesh networking model.
+      Bate-papo por vídeo multiusuário (muitos para muitos) usando o modelo de rede mesh.
     </p>
   </h1>
 
   <section class="make-center">
 
+    <div class="select">
+      <label for="audioSource">Audio input source: </label><select id="audioSource"></select>
+    </div>
 
-    <label><input type="checkbox" id="record-entire-conference"> Record Entire Conference In The Browser?</label>
+    <div class="select">
+        <label for="audioOutput">Audio output destination: </label><select id="audioOutput"></select>
+    </div>
+
+    <div class="select">
+        <label for="videoSource">Video source: </label><select id="videoSource"></select>
+    </div>
+
+
+    <video id="video" playsinline autoplay height="120" ></video>
+
+    <br>
+
+
+    <label><input type="checkbox" id="record-entire-conference"> Gravar a conferência inteira no navegador?</label>
     <span id="recording-status" style="display: none;"></span>
-    <button id="btn-stop-recording" style="display: none;">Stop Recording</button>
+    <button id="btn-stop-recording" style="display: none;">Para Gravação</button>
     <br><br>
 
     <input type="text" id="room-id" value="abcdef" autocorrect=off autocapitalize=off size=20>
@@ -70,7 +103,7 @@
     <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
   </section>
 
-<script src="/dist/RTCMultiConnection.min.js"></script>
+<script src="/dist/RTCMultiConnection.js"></script>
 <script src="/node_modules/webrtc-adapter/out/adapter.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -80,6 +113,10 @@
 <script src="/dev/getHTMLMediaElement.js"></script>
 
 <script src="/node_modules/recordrtc/RecordRTC.js"></script>
+
+
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="js/main.js" async></script>
 
 
 <script>
@@ -145,7 +182,8 @@ connection.iceServers = [{
 
 Vue.component('todo-item', {
   props: ['todo'],
-  template: '<video controls autoplay playsinline :srcObject.prop="todo.srcObject" :muted="todo.muted" :id="todo.id"></video>'
+  template: '<video autoplay playsinline :srcObject.prop="todo.srcObject" :muted="todo.muted" :id="todo.id"></video>'
+  // template: '<video controls autoplay playsinline :srcObject.prop="todo.srcObject" :muted="todo.muted" :id="todo.id"></video>'
 })
 
 var vueApp = new Vue({
@@ -157,7 +195,7 @@ var vueApp = new Vue({
 
 connection.autoCreateMediaElement = false;
 connection.onstream = function(event) {
-  console.log(event);
+  // console.log(event);
     vueApp.videosList.push({
         id: event.streamid,
         srcObject: event.stream,
@@ -189,7 +227,7 @@ connection.onstream = function(event) {
       }
 
       connection.recorder.streams.push(event.stream);
-      recordingStatus.innerHTML = 'Recording ' + connection.recorder.streams.length + ' streams';
+      recordingStatus.innerHTML = 'Gravando ' + connection.recorder.streams.length + ' streams';
     }
 
 };
@@ -210,7 +248,7 @@ connection.onstreamended = function(event) {
 
 function disableInputButtons() {
     document.getElementById('room-id').onkeyup();
-
+    
     document.getElementById('open-or-join-room').disabled = true;
     document.getElementById('open-room').disabled = true;
     document.getElementById('join-room').disabled = true;
